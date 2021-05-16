@@ -1,4 +1,6 @@
+import re
 import time
+import logging
 
 from behave import *
 
@@ -54,6 +56,94 @@ def step(context, text):
     print(curr_url)
     # Проверяем его с искомым https://www.avtodispetcher.ru/distance/
     if curr_url == text:
-        assert print("Искомая страница совпалает с текущей")
+        assert True
+        logging.info("Искомая страница совпалает с текущей")
     else:
-        assert print("Искомая страница не совпадает с текушей")
+        logging.info("Искомая страница не совпадает с текушей")
+        assert False
+
+
+@then("Input value from '{text}'")
+def step(context, text):
+    input_from = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//input[@name="from"]'))
+    )
+    input_from.send_keys(text)
+
+
+@then("Input value to '{text}'")
+def step(context, text):
+    input_to = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//input[@name="to"]'))
+    )
+    input_to.send_keys(text)
+
+
+@then("Set value gas '{text}'")
+def step(context, text):
+    input_fc = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//input[@name="fc"]'))
+    )
+    input_fc.clear()
+    input_fc.send_keys(text)
+
+
+@then("Set value price on gas '{text}'")
+def step(context, text):
+    input_fp = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//input[@name="fp"]'))
+    )
+    input_fp.clear()
+    input_fp.send_keys(text)
+
+
+@then("Click on button with value '{text}'")
+def step(context, text):
+    btn_input = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//input[@value="{}"]'.format(text)))
+    )
+    btn_input.click()
+
+
+@then("Checking total distance '{text}'")
+def step(context, text):
+    total_distance = WebDriverWait(context.browser, 120).until(
+        EC.presence_of_element_located((By.XPATH, '//span[@id="totalDistance"]'.format(text)))
+    )
+    if total_distance.text == text:
+        assert True
+        logging.info("Искомая дистанция совпалает с текущей")
+    else:
+        logging.info("Искомая дистанция совпалает с текущей")
+        assert False
+
+
+@then("Checking total price '{text}'")
+def step(context, text):
+    total_price = WebDriverWait(context.browser, 120).until(
+        EC.presence_of_element_located((By.XPATH, '//*[contains(text(), "{}")]'.format(text)))
+    )
+    context.browser.implicitly_wait(10)
+    if re.search(text, total_price.text):
+        assert True
+        logging.info("Искомая цена совпалает с текущей")
+        context.browser.quit()
+    else:
+        logging.info("Искомая цена совпалает с текущей")
+        assert False
+
+
+@then("Change route")
+def step(context, text):
+    btn_input = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//span[@class="anchor"]'.format(text)))
+    )
+    btn_input.click()
+
+
+@then("Change route")
+def step(context, text):
+    btn_input = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//span[@class="anchor"]'.format(text)))
+    )
+    btn_input.click()

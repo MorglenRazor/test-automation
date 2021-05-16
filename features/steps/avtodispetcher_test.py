@@ -54,7 +54,6 @@ def step(context, text):
     print(curr_url)
     # Проверяем его с искомым https://www.avtodispetcher.ru/distance/
     if curr_url == text:
-        assert True
-
+        assert print("Искомая страница совпалает с текущей")
     else:
-        assert False
+        assert print("Искомая страница не совпадает с текушей")

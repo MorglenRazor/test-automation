@@ -146,15 +146,39 @@ def step(context, text):
         EC.element_to_be_clickable((By.XPATH, '//input[@name="v"]'))
     )
     input_city.send_keys(text)
-    #context.browser.quit()
 
 
 @then("Wait 30 second and click btn '{text}'")
 def step(context, text):
-    context.implicitly_wait(30)
+    time.sleep(30)
     btn = WebDriverWait(context.browser, 120).until(
         EC.element_to_be_clickable((By.XPATH, '//input[@value="{}"]'.format(text)))
     )
     btn.click()
-    time.sleep(30)
-    context.browser.quit()
+
+
+@then("Checking new total distance '{text}'")
+def step(context, text):
+    total_distance = WebDriverWait(context.browser, 120).until(
+        EC.presence_of_element_located((By.XPATH, '//span[@id="totalDistance"]'))
+    )
+    if total_distance.text == text:
+        assert True
+        logging.info("Искомая дистанция совпалает с текущей")
+    else:
+        logging.info("Искомая дистанция совпалает с текущей")
+        assert False
+
+
+@then("Checking new total price '{text}'")
+def step(context, text):
+    total_price = WebDriverWait(context.browser, 120).until(
+        EC.presence_of_element_located((By.XPATH, '//*[contains(text(), "{}")]'.format(text)))
+    )
+    context.browser.implicitly_wait(10)
+    if re.search(text, total_price.text):
+        assert True
+        logging.info("Искомая цена совпалает с текущей")
+    else:
+        logging.info("Искомая цена совпалает с текущей")
+        assert False

@@ -18,3 +18,5 @@ Scenario: Сheck some text in search results
   Then Change route 'Настроить маршрут'
   Then Find field between city and input city 'Великий Новгород'
   Then Wait 30 second and click btn 'Рассчитать'
+  Then Checking new total distance '966'
+  And Checking new total price '4002'

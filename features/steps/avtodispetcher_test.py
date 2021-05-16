@@ -141,9 +141,11 @@ def step(context, text):
     btn_input.click()
 
 
-@then("Change route")
+@then("Find field between city and input city '{text}'")
 def step(context, text):
-    btn_input = WebDriverWait(context.browser, 120).until(
-        EC.element_to_be_clickable((By.XPATH, '//span[@class="anchor"]'.format(text)))
+    input_city = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//input[@name="v"]'))
     )
-    btn_input.click()
+    input_city.send_keys(text)
+    time.sleep(10)
+    context.browser.quit()

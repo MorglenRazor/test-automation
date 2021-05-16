@@ -15,3 +15,5 @@ Scenario: Сheck some text in search results
   Then Click on button with value 'Рассчитать'
   Then Checking total distance '897'
   Then Checking total price '3726'
+  Then Change route
+  Then Find field between city and input city 'Великий Новгород'

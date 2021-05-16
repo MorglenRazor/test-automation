@@ -127,16 +127,15 @@ def step(context, text):
     if re.search(text, total_price.text):
         assert True
         logging.info("Искомая цена совпалает с текущей")
-        context.browser.quit()
     else:
         logging.info("Искомая цена совпалает с текущей")
         assert False
 
 
-@then("Change route")
+@then("Change route '{text}'")
 def step(context, text):
     btn_input = WebDriverWait(context.browser, 120).until(
-        EC.element_to_be_clickable((By.XPATH, '//span[@class="anchor"]'.format(text)))
+        EC.element_to_be_clickable((By.XPATH, '//span[contains(text(), "{}")]'.format(text)))
     )
     btn_input.click()
 
@@ -147,5 +146,15 @@ def step(context, text):
         EC.element_to_be_clickable((By.XPATH, '//input[@name="v"]'))
     )
     input_city.send_keys(text)
-    time.sleep(10)
+    #context.browser.quit()
 
+
+@then("Wait 30 second and click btn '{text}'")
+def step(context, text):
+    context.implicitly_wait(30)
+    btn = WebDriverWait(context.browser, 120).until(
+        EC.element_to_be_clickable((By.XPATH, '//input[@value="{}"]'.format(text)))
+    )
+    btn.click()
+    time.sleep(30)
+    context.browser.quit()

@@ -148,4 +148,4 @@ def step(context, text):
     )
     input_city.send_keys(text)
     time.sleep(10)
-    context.browser.quit()
+

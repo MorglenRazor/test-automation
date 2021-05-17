@@ -11,12 +11,20 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = '/home/morglen/PycharmProjects/test_automation/res/chromedriver'
-
 
 @given('Website "{url}"')
 def step(context, url):
-    context.browser = webdriver.Chrome(driver)
+    capabilities = {
+        "browserName": "chrome",
+        "version": "90.0",
+        "platform": "LINUX"
+    }
+
+    context = webdriver.Remote(
+        command_executor='http://localhost:4444/wd/hub',
+        desired_capabilities=capabilities
+    )
+
     context.browser.maximize_window()
     context.browser.get(url)
 

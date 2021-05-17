@@ -11,7 +11,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = '/home/morglen/PycharmProjects/test_automation/chromedriver'
+driver = '/home/morglen/PycharmProjects/test_automation/res/chromedriver'
+
 
 @given('Website "{url}"')
 def step(context, url):

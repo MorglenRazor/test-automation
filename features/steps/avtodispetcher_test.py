@@ -1,6 +1,6 @@
 import re
 import time
-import logging
+from features.environment import *
 
 from behave import *
 
@@ -14,17 +14,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @given('Website "{url}"')
 def step(context, url):
-    capabilities = {
-        "browserName": "chrome",
-        "version": "90.0",
-        "platform": "LINUX"
-    }
-
-    context = webdriver.Remote(
-        command_executor='http://localhost:4444/wd/hub',
-        desired_capabilities=capabilities
-    )
-
     context.browser.maximize_window()
     context.browser.get(url)
 

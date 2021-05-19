@@ -1,0 +1,17 @@
+root - INFO - Start Testing ...
+root - INFO - We insert into the search "calculation of distances between cities"
+root - INFO - Now click on the "Find" button
+root - INFO - We are looking for the desired site on the search page
+root - INFO - We check the correctness of the desired site, checking the URL that we know with the one we visitedr
+root - INFO - Insert "From" values
+root - INFO - Insert the value "Where"
+root - INFO - Set the "Fuel Consumption" values
+root - INFO - Set the value "Price per liter"
+root - INFO - Click on the "Calculate" button
+root - INFO - Checking the total distancer
+root - INFO - Checking total price
+root - INFO - Press the button "Change route"
+root - INFO - Find the field "Between cities" and Insert the city "Veliky Novgorod"
+root - INFO - We wait 30 seconds and click on the "Calculate" button
+root - INFO - Checking a new distance with a known to us
+root - INFO - We check the new price with the known to us

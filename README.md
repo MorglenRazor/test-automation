@@ -3,7 +3,7 @@
     <h3>2.Python 3.7</h3>
 <h2>1. Запустить скачку зависимостей проекта для Linux</h2>
 
-    pip install -r requirements.txt
+    pip install -r requirements
 
 <h2>2. Запустить скачку зависимостей проекта для Windows</h2>
     
